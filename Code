@@ -1,0 +1,43 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(7,8,9,10,11,12);
+int sensorValuea;
+int sensorValueb;
+int c;
+int a;
+void setup() {
+  lcd.begin(16, 2);
+  lcd.clear();
+  Serial.begin(9600);
+  }
+  void loop() {
+sensorValuea = analogRead(0);       // read analog input pin 0
+sensorValueb = analogRead(1);       // read analog input pin 1
+Serial.print("AirQuality for sensor A and B=");
+Serial.print(sensorValuea, DEC);               // prints the value read
+Serial.print(sensorValueb, DEC);               // prints the value read
+Serial.println(" PPM respectively.");
+c=sensorValuea-sensorValueb;
+a=abs(c)
+if (a > 50)
+{   
+    if (c<0) {
+        lcd.setCursor(0,0); // Sets the cursor to col 0 and row 0
+        lcd.print("Open Windows"); // Prints the message
+        delay(9000)
+    }
+    else if (c>0) {
+        lcd.setCursor(0,0); // Sets the cursor to col 0 and row 0
+        lcd.print("Open Windows"); // Prints the message
+        delay(9000)
+      }
+    else {
+        lcd.setCursor(0,0); // Sets the cursor to col 0 and row 0
+        lcd.print("Open Windows"); // Clears the Display
+          }
+          dealay(30000)
+else{
+   lcd.setCursor(0,0); // Sets the cursor to col 0 and row 0
+   lcd.print("Processing Data"); // Prints the message
+}
+delay(500)
+}
